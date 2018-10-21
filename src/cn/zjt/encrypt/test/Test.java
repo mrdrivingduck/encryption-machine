@@ -7,13 +7,22 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		SymmetricEncryptMachine sm1 = new SymmetricEncryptMachine("1a2b3c4d5a6b7c8d", "AES");
-		byte[] cipherText = sm1.Encrypt("I love u");
-		String clearText = sm1.Decrypt(cipherText);
+		String message = 
+			"Dear Irene.\n" +
+			"U r a special girl.\n" +
+			"U r ambitious with your career.\n" +
+			"U r attractive in appearence.\n" +
+			"It's a pleasure to meet u.\n" +
+			"Wish u all the best in Germany.\n" +
+			"Happy birthday!!!";
+
+		SymmetricEncryptMachine sm1 = new SymmetricEncryptMachine("irenezhuyue97117", "AES");
+		byte[] cipherText = sm1.Encrypt(message);
+		String plainText = sm1.Decrypt(cipherText);
 
 		System.out.println("key: " + sm1.getKeyString());
 		System.out.println("cipher text: " + CoderUtil.encodeHex(cipherText));
-		System.out.println("clear text: " + clearText);
+		System.out.println("plain text: " + plainText);
 
 	}
 

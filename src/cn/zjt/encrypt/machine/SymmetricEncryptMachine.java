@@ -154,7 +154,6 @@ public class SymmetricEncryptMachine {
      * @return The string form of secret key
      */
     public String getKeyString() {
-        // return CoderUtil.encodeHex(key.getEncoded());
         return new String(key.getEncoded());
     }
 }
