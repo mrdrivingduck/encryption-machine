@@ -4,21 +4,21 @@ import cn.zjt.encrypt.exception.IllegalHexCharacterException;
 
 public class CoderUtil {
 
-    private static char[] characters = {
+    private static final char[] characters = {
         '0', '1', '2', '3',
         '4', '5', '6', '7',
         '8', '9', 'a', 'b',
         'c', 'd', 'e', 'f'
     };
 
-    private static byte[] bytes = {
+    private static final byte[] bytes = {
         0, 1, 2, 3,
         4, 5, 6, 7,
         8, 9, 10, 11,
         12, 13, 14, 15
     };
 
-    private static String hex = "0123456789abcdef";
+    private static final String hex = "0123456789abcdef";
 
     /**
      * @version 2018.10.20
@@ -43,7 +43,7 @@ public class CoderUtil {
      * @return A byte array parsed from source hexadecimal string
      * @throws IllegalHexCharacterException
      */
-    public static byte[] decodeHex(final String hexStr) throws IllegalHexCharacterException {
+    public static final byte[] decodeHex(final String hexStr) throws IllegalHexCharacterException {
         byte[] decode = new byte[hexStr.length() / 2];
         char[] charArray = hexStr.toLowerCase().toCharArray();
         
