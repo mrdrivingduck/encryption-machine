@@ -1,38 +1,49 @@
-
-
 # Encryption Machine
 
 A Java framework for simple encryption/decryption.
 
 Author : Mr Dk.
 
-Date : 2018.10.21
+Date : 2018.10.25
 
 ---
 
 ### Symmetric Encryption
 
-* Initialize an `SymmetricEncryptionMachine`
-  * with specific _algorithm type_ and _secret key_
-  * with only _algorithm_ and generate a random _secret key_
+* Construct an `SymEcrptMachine` object
+
+  * with specific __algorithm__ & randomly-generated _secret key_
+
+  ```java
+  SymEcrptMachine sem = new SymEcrptMachine("AES/ECB/PKCS5Padding");
+  ```
+
+  * with specific __algorithm__ & __secret key__
+
+  ```java
+  SymEcrptMachine sem = new SymEcrptMachine("DES/CBC/PKCS5Padding", "12345678");
+  ```
+
+  * with specific __algorithm__ & __secret key__ & __IV Parameter__
+
+  ```java
+  SymEcrptMachine sem = new SymEcrptMachine(
+      "AES/CBC/PKCS5Padding",
+      "fdsafdddddsesesd",
+      "1234567812345678"
+  );
+  ```
+
+* Encrypt the __plain text__
 
 ```java
-// algorithm-type & secret-key
-SymmetricEncryptMachine sem1 = new SymmetricEncryptMachine("1a2b3c4d5a6b7c8d", "AES");
-// algorithm-type & auto-generated key
-SymmetricEncryptMachine sem2 = new SymmetricEncryptMachine("AES");
+byte[] cipherText = sem1.encrypt("I love u");
 ```
 
-* Encrypt the _plain text_
+* Decrypt the __cipher text__
 
 ```java
-byte[] cipherText = sem1.Encrypt("I love u");
-```
-
-* Decrypt the _cipher text_
-
-```java
-String plainText = sem1.Decrypt(cipherText);
+String plainText = sem1.decrypt(cipherText);
 ```
 
 * Get _secret-key_
@@ -43,6 +54,23 @@ byte[] keyBytes = sem1.getKey();
 // Get string form of key
 String keyString = sem1.getKeyString();
 ```
+
+* Supported working modes
+
+| Algorithm | Encrypting Mode | Filling Mode | Key Length     |
+| --------- | --------------- | ------------ | -------------- |
+| AES       | ECB             | PKCS5Padding | 128            |
+| AES       | ECB             | NoPadding    | 128            |
+| AES       | CBC             | PKCS5Padding | 128            |
+| AES       | CBC             | NoPadding    | 128            |
+| DES       | ECB             | PKCS5Padding | 64（56 valid） |
+| DES       | ECB             | NoPadding    | 64（56 valid） |
+| DES       | CBC             | PKCS5Padding | 64（56 valid） |
+| DES       | CBC             | NoPadding    | 64（56 valid） |
+| DESede    | ECB             | PKCS5Padding | 168            |
+| DESede    | ECB             | NoPadding    | 168            |
+| DESede    | CBC             | PKCS5Padding | 168            |
+| DESede    | CBC             | NoPadding    | 168            |
 
 ---
 

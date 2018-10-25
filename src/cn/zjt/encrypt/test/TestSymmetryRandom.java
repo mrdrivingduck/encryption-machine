@@ -8,9 +8,9 @@ public class TestSymmetryRandom {
 
 		String message = "hello world";
 
-		SymEcrptMachine sem = new SymEcrptMachine("DES/ECB/PKCS5Padding ");
-		byte[] cipherText = sem.Encrypt(message);
-		String plainText = sem.Decrypt(cipherText);
+		SymEcrptMachine sem = new SymEcrptMachine("AES/ECB/PKCS5Padding");
+		byte[] cipherText = sem.encrypt(message);
+		String plainText = sem.decrypt(cipherText);
 		
 		System.out.println(plainText);
 

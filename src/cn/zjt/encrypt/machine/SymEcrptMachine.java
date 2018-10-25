@@ -13,6 +13,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
 import cn.zjt.encrypt.exception.IllegalHexCharacterException;
 import cn.zjt.encrypt.util.CoderUtil;
@@ -21,8 +22,7 @@ import cn.zjt.encrypt.util.CoderUtil;
  * @author Mr Dk.
  * @version 2018.10.25
  * 
- * Supporting mode
- * 
+ * @support
  *  AES/CBC/NoPadding (128)
  *  AES/CBC/PKCS5Padding (128)
  *  AES/ECB/NoPadding (128)
@@ -42,7 +42,7 @@ public class SymEcrptMachine {
     private KeyGenerator kGenerator;
     private SecretKey key;
     private Cipher cipher;
-    private IvParameterSpec ivSpec;
+    private IvParameterSpec ivSpec; // CBC mode only
 
     private String algorithmName;
     private String encryptMode;
@@ -52,37 +52,17 @@ public class SymEcrptMachine {
      * @param algorithm
      */
     public SymEcrptMachine(String algorithm) {
+        paramInitialize(algorithm);
 
-        String[] param = algorithm.split("/");
-        algorithmName = param[0];
-        if (param.length == 3) {
-            encryptMode = param[1];
-        } else {
-            encryptMode = "ECB";
-        }
-    
         try {
             kGenerator = KeyGenerator.getInstance(algorithmName);
             key = kGenerator.generateKey();
             cipher = Cipher.getInstance(algorithm);
+            ivParameterGenerate();
 
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             e.printStackTrace();
         }
-
-        byte[] ivRand = null;
-        if (algorithmName.equals("DES") ||
-            algorithmName.equals("DESede")) {
-            ivRand = new byte[8];
-        } else if (algorithmName.equals("AES")) {
-            ivRand = new byte[16];
-        } else {
-            ivRand = new byte[8];
-        }
-
-        SecureRandom rand = new SecureRandom();
-        rand.nextBytes(ivRand);
-        ivSpec = new IvParameterSpec(ivRand);
     }
 
     /**
@@ -91,21 +71,72 @@ public class SymEcrptMachine {
      * @param keyStr
      * @param algorithm
      */
-    // public SymmetricEncryptMachine(String keyStr, String algorithm) {
-    //     try {
-    //         key = new SecretKeySpec(keyStr.getBytes("utf-8"), InputUtil.GetAlgorithm(algorithm));
-    //         cipher = Cipher.getInstance(algorithm);
-    //     } catch (UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException e) {
-    //         e.printStackTrace();
-    //     }
-    // }
+    public SymEcrptMachine(String algorithm, String keyStr, String ivSpecStr) {
+        paramInitialize(algorithm);
+
+        try {
+            key = new SecretKeySpec(keyStr.getBytes("utf-8"), algorithmName);
+            cipher = Cipher.getInstance(algorithm);
+            ivSpec = new IvParameterSpec(ivSpecStr.getBytes());
+            
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public SymEcrptMachine(String algorithm, String keyStr) {
+        paramInitialize(algorithm);
+
+        try {
+            key = new SecretKeySpec(keyStr.getBytes("utf-8"), algorithmName);
+            cipher = Cipher.getInstance(algorithm);
+            ivParameterGenerate();
+            
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @version 2018.10.25
+     * @param algorithm
+     */
+    private void paramInitialize(String algorithm) {
+        String[] param = algorithm.split("/");
+        algorithmName = param[0];
+        if (param.length == 3) {
+            encryptMode = param[1];
+        } else {
+            encryptMode = "ECB";
+        }
+    }
+
+    /**
+     * @version 2018.10.25
+     * @throws UnsupportAlgorithmException
+     */
+    private void ivParameterGenerate() throws NoSuchAlgorithmException {
+        byte[] ivRand = null;
+        if (algorithmName.equals("DES") ||
+            algorithmName.equals("DESede")) {
+            ivRand = new byte[8];
+        } else if (algorithmName.equals("AES")) {
+            ivRand = new byte[16];
+        } else {
+            throw new NoSuchAlgorithmException(algorithmName);
+        }
+
+        SecureRandom rand = new SecureRandom();
+        rand.nextBytes(ivRand);
+        ivSpec = new IvParameterSpec(ivRand);
+    }
 
     /**
      * @version 2018.10.25
      * @param src
      * @return The byte form of cipher text
      */
-    public byte[] Encrypt(String src) {
+    public byte[] encrypt(String src) {
         try {
             if (encryptMode.equals("CBC")) {
                 cipher.init(Cipher.ENCRYPT_MODE, key, ivSpec);
@@ -126,7 +157,7 @@ public class SymEcrptMachine {
      * @param cipherText
      * @return The clear text
      */
-    public String Decrypt(byte[] cipherText) {
+    public String decrypt(byte[] cipherText) {
         try {
             if (encryptMode.equals("CBC")) {
                 cipher.init(Cipher.DECRYPT_MODE, key, ivSpec);
@@ -150,8 +181,8 @@ public class SymEcrptMachine {
      * @return The clear text
      * @throws IllegalHexCharacterException
      */
-    public String Decrypt(String hexCipherText) throws IllegalHexCharacterException {
-        return Decrypt(CoderUtil.decodeHex(hexCipherText));
+    public String decrypt(String hexCipherText) throws IllegalHexCharacterException {
+        return decrypt(CoderUtil.decodeHex(hexCipherText));
     }
 
     /**
