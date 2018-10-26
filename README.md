@@ -30,7 +30,7 @@ Date : 2018.10.25
   SymEcrptMachine sem = new SymEcrptMachine("DES/CBC/PKCS5Padding", "12345678");
   ```
 
-  * with specific __algorithm__ & __secret key__ & __IV Parameter__
+  * with specific __algorithm__ & __secret key__ & __IV Parameter__ (Needed by _CBC_ mode)
 
   ```java
   SymEcrptMachine sem = new SymEcrptMachine(
@@ -63,20 +63,28 @@ String keyString = sem1.getKeyString();
 
 * Supported working modes
 
-| Algorithm | Encrypting Mode | Filling Mode | Key Length     |
-| --------- | --------------- | ------------ | -------------- |
-| AES       | ECB             | PKCS5Padding | 128            |
-| AES       | ECB             | NoPadding    | 128            |
-| AES       | CBC             | PKCS5Padding | 128            |
-| AES       | CBC             | NoPadding    | 128            |
-| DES       | ECB             | PKCS5Padding | 64（56 valid） |
-| DES       | ECB             | NoPadding    | 64（56 valid） |
-| DES       | CBC             | PKCS5Padding | 64（56 valid） |
-| DES       | CBC             | NoPadding    | 64（56 valid） |
-| DESede    | ECB             | PKCS5Padding | 168            |
-| DESede    | ECB             | NoPadding    | 168            |
-| DESede    | CBC             | PKCS5Padding | 168            |
-| DESede    | CBC             | NoPadding    | 168            |
+| Algorithm | Encrypting Mode | Filling Mode |
+| --------- | --------------- | ------------ |
+| AES       | ECB             | PKCS5Padding |
+| AES       | ECB             | NoPadding    |
+| AES       | CBC             | PKCS5Padding |
+| AES       | CBC             | NoPadding    |
+| DES       | ECB             | PKCS5Padding |
+| DES       | ECB             | NoPadding    |
+| DES       | CBC             | PKCS5Padding |
+| DES       | CBC             | NoPadding    |
+| DESede    | ECB             | PKCS5Padding |
+| DESede    | ECB             | NoPadding    |
+| DESede    | CBC             | PKCS5Padding |
+| DESede    | CBC             | NoPadding    |
+
+* Supported key length
+
+| Algorithm | Key Length (bit)          |
+| --------- | ------------------------- |
+| AES       | 128 (default) / 192 / 256 |
+| DES       | 56 (default)              |
+| DESede    | 112 / 168 (default)       |
 
 ---
 
