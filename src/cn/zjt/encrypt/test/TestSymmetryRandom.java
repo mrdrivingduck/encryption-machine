@@ -8,7 +8,7 @@ public class TestSymmetryRandom {
 
 		String message = "hello world";
 
-		SymEcrptMachine sem = new SymEcrptMachine("AES/ECB/PKCS5Padding");
+		SymEcrptMachine sem = new SymEcrptMachine("AES/ECB/PKCS5Padding", 192);
 		byte[] cipherText = sem.encrypt(message);
 		String plainText = sem.decrypt(cipherText);
 		

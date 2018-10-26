@@ -18,6 +18,12 @@ Date : 2018.10.25
   SymEcrptMachine sem = new SymEcrptMachine("AES/ECB/PKCS5Padding");
   ```
 
+  * with specific __algorithm__ & randomly-generated secret key of __specific length__
+
+  ```java
+  SymEcrptMachine sem = new SymEcrptMachine("AES/ECB/PKCS5Padding", 192);
+  ```
+
   * with specific __algorithm__ & __secret key__
 
   ```java

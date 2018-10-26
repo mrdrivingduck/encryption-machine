@@ -66,6 +66,25 @@ public class SymEcrptMachine {
     }
 
     /**
+     * @version 2018.10.26
+     * @param algorithm
+     * @param keySize
+     */
+    public SymEcrptMachine(String algorithm, int keySize) {
+        paramInitialize(algorithm);
+
+        try {
+            kGenerator = KeyGenerator.getInstance(algorithmName);
+            kGenerator.init(keySize);
+            key = kGenerator.generateKey();
+            cipher = Cipher.getInstance(algorithm);
+            ivParameterGenerate();
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * ATTENTION : One character in keyStr represents for 8-bit
      * @version 2018.10.21
      * @param keyStr
