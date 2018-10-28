@@ -63,20 +63,20 @@ String keyString = sem1.getKeyString();
 
 * Supported working modes
 
-| Algorithm | Encrypting Mode | Filling Mode |
-| --------- | --------------- | ------------ |
-| AES       | ECB             | PKCS5Padding |
-| AES       | ECB             | NoPadding    |
-| AES       | CBC             | PKCS5Padding |
-| AES       | CBC             | NoPadding    |
-| DES       | ECB             | PKCS5Padding |
-| DES       | ECB             | NoPadding    |
-| DES       | CBC             | PKCS5Padding |
-| DES       | CBC             | NoPadding    |
-| DESede    | ECB             | PKCS5Padding |
-| DESede    | ECB             | NoPadding    |
-| DESede    | CBC             | PKCS5Padding |
-| DESede    | CBC             | NoPadding    |
+| Algorithm | Encrypting Mode | Filling Mode | Parameter                                |
+| --------- | --------------- | ------------ | ---------------------------------------- |
+| AES       | ECB             | PKCS5Padding | `"AES"` / `"AES/ECE/PKCS5Padding"`       |
+| AES       | ECB             | NoPadding    | `"AEC/ECB/NoPadding"`                    |
+| AES       | CBC             | PKCS5Padding | `"AES/CBC/PKCS5Padding"`                 |
+| AES       | CBC             | NoPadding    | `"AEC/CBC/NoPadding"`                    |
+| DES       | ECB             | PKCS5Padding | `"DES"` / `"DES/ECB/PKCS5Padding"`       |
+| DES       | ECB             | NoPadding    | `"DES/ECB/NoPadding"`                    |
+| DES       | CBC             | PKCS5Padding | `"DES/CBC/PKCS5Padding"`                 |
+| DES       | CBC             | NoPadding    | `"DES/CBC/NoPadding"`                    |
+| DESede    | ECB             | PKCS5Padding | `"DESede"` / `"DESede/ECB/PKCS5Padding"` |
+| DESede    | ECB             | NoPadding    | `"DESede/ECB/NoPadding"`                 |
+| DESede    | CBC             | PKCS5Padding | `"DESede/CBC/PKCS5Padding"`              |
+| DESede    | CBC             | NoPadding    | `"DESede/CBC/NoPadding"`                 |
 
 * Supported key length
 
