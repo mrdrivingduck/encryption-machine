@@ -20,7 +20,7 @@ import cn.zjt.encrypt.util.CoderUtil;
 
 /**
  * @author Mr Dk.
- * @version 2018.10.25
+ * @version 2018.10.29
  * 
  * @support
  *  AES/CBC/NoPadding (128)
@@ -47,7 +47,6 @@ public class SymEcrptMachine {
     private String encryptMode;
 
     /**
-     * @version 2018.10.25
      * @param algorithm
      */
     public SymEcrptMachine(String algorithm) {
@@ -65,7 +64,6 @@ public class SymEcrptMachine {
     }
 
     /**
-     * @version 2018.10.26
      * @param algorithm
      * @param keySize
      */
@@ -85,7 +83,6 @@ public class SymEcrptMachine {
 
     /**
      * ATTENTION : One character in keyStr represents for 8-bit
-     * @version 2018.10.21
      * @param keyStr
      * @param algorithm
      */
@@ -102,6 +99,10 @@ public class SymEcrptMachine {
         }
     }
 
+    /**
+     * @param algorithm
+     * @param keyStr
+     */
     public SymEcrptMachine(String algorithm, String keyStr) {
 
         paramInitialize(algorithm);
@@ -116,7 +117,6 @@ public class SymEcrptMachine {
     }
 
     /**
-     * @version 2018.10.25
      * @param algorithm
      */
     private void paramInitialize(String algorithm) {
@@ -130,7 +130,6 @@ public class SymEcrptMachine {
     }
 
     /**
-     * @version 2018.10.25
      * @throws UnsupportAlgorithmException
      */
     private void ivParameterGenerate() throws NoSuchAlgorithmException {
@@ -150,7 +149,6 @@ public class SymEcrptMachine {
     }
 
     /**
-     * @version 2018.10.25
      * @param src
      * @return The byte form of cipher text
      */
@@ -171,7 +169,6 @@ public class SymEcrptMachine {
     }
 
     /**
-     * @version 2018.10.25
      * @param cipherText
      * @return The clear text
      */
@@ -194,9 +191,8 @@ public class SymEcrptMachine {
     }
 
     /**
-     * @version 2018.10.20
      * @param hexCipherText
-     * @return The clear text
+     * @return The plain-text
      * @throws IllegalHexCharacterException
      */
     public String decrypt(String hexCipherText) throws IllegalHexCharacterException {
@@ -204,7 +200,6 @@ public class SymEcrptMachine {
     }
 
     /**
-     * @version 2018.10.21
      * @return The byte array form of secret key
      */
     public byte[] getKey() {
@@ -212,7 +207,6 @@ public class SymEcrptMachine {
     }
 
     /**
-     * @version 2018.10.21
      * @return The string form of secret key
      */
     public String getKeyString() {
