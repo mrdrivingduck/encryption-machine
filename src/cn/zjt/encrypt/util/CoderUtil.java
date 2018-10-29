@@ -1,6 +1,13 @@
 package cn.zjt.encrypt.util;
 
+import java.util.Base64;
+
 import cn.zjt.encrypt.exception.IllegalHexCharacterException;
+
+/**
+ * @version 2018.10.29
+ * @author Mr Dk.
+ */
 
 public class CoderUtil {
 
@@ -21,11 +28,10 @@ public class CoderUtil {
     private static final String hex = "0123456789abcdef";
 
     /**
-     * @version 2018.10.20
      * @param src
      * @return A hexadecimal string of source byte array
      */
-    public static String encodeHex(final byte[] src) {
+    public static final String encodeHex(final byte[] src) {
         char[] encode = new char[src.length * 2];
         int index = 0;
 
@@ -38,7 +44,6 @@ public class CoderUtil {
     }
 
     /**
-     * @version 2018.10.20
      * @param hexStr
      * @return A byte array parsed from source hexadecimal string
      * @throws IllegalHexCharacterException
@@ -66,4 +71,19 @@ public class CoderUtil {
         return decode;
     }
 
+    /**
+     * @param src
+     * @return An encoded Base64 string
+     */
+    public static final String encodeBase64(final byte[] src) {
+        return Base64.getEncoder().encodeToString(src);
+    }
+
+    /**
+     * @param base64Str
+     * @return An decoded byte array from a Base64 string
+     */
+    public static final byte[] decodeBase64(final String base64Str) {
+        return Base64.getDecoder().decode(base64Str);
+    }
 }

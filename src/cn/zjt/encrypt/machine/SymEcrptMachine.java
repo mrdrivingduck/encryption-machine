@@ -39,7 +39,6 @@ import cn.zjt.encrypt.util.CoderUtil;
 
 public class SymEcrptMachine {
 
-    private KeyGenerator kGenerator;
     private SecretKey key;
     private Cipher cipher;
     private IvParameterSpec ivSpec; // CBC mode only
@@ -52,12 +51,12 @@ public class SymEcrptMachine {
      * @param algorithm
      */
     public SymEcrptMachine(String algorithm) {
-        paramInitialize(algorithm);
 
+        paramInitialize(algorithm);
         try {
-            kGenerator = KeyGenerator.getInstance(algorithmName);
-            key = kGenerator.generateKey();
-            cipher = Cipher.getInstance(algorithm);
+            KeyGenerator kGenerator = KeyGenerator.getInstance(algorithmName);
+            this.key = kGenerator.generateKey();
+            this.cipher = Cipher.getInstance(algorithm);
             ivParameterGenerate();
 
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
@@ -71,13 +70,13 @@ public class SymEcrptMachine {
      * @param keySize
      */
     public SymEcrptMachine(String algorithm, int keySize) {
-        paramInitialize(algorithm);
 
+        paramInitialize(algorithm);
         try {
-            kGenerator = KeyGenerator.getInstance(algorithmName);
+            KeyGenerator kGenerator = KeyGenerator.getInstance(algorithmName);
             kGenerator.init(keySize);
-            key = kGenerator.generateKey();
-            cipher = Cipher.getInstance(algorithm);
+            this.key = kGenerator.generateKey();
+            this.cipher = Cipher.getInstance(algorithm);
             ivParameterGenerate();
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             e.printStackTrace();
@@ -91,12 +90,12 @@ public class SymEcrptMachine {
      * @param algorithm
      */
     public SymEcrptMachine(String algorithm, String keyStr, String ivSpecStr) {
-        paramInitialize(algorithm);
 
+        paramInitialize(algorithm);
         try {
-            key = new SecretKeySpec(keyStr.getBytes("utf-8"), algorithmName);
-            cipher = Cipher.getInstance(algorithm);
-            ivSpec = new IvParameterSpec(ivSpecStr.getBytes());
+            this.key = new SecretKeySpec(keyStr.getBytes("utf-8"), algorithmName);
+            this.cipher = Cipher.getInstance(algorithm);
+            this.ivSpec = new IvParameterSpec(ivSpecStr.getBytes());
             
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException e) {
             e.printStackTrace();
@@ -104,11 +103,11 @@ public class SymEcrptMachine {
     }
 
     public SymEcrptMachine(String algorithm, String keyStr) {
-        paramInitialize(algorithm);
 
+        paramInitialize(algorithm);
         try {
-            key = new SecretKeySpec(keyStr.getBytes("utf-8"), algorithmName);
-            cipher = Cipher.getInstance(algorithm);
+            this.key = new SecretKeySpec(keyStr.getBytes("utf-8"), algorithmName);
+            this.cipher = Cipher.getInstance(algorithm);
             ivParameterGenerate();
             
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException e) {
@@ -122,11 +121,11 @@ public class SymEcrptMachine {
      */
     private void paramInitialize(String algorithm) {
         String[] param = algorithm.split("/");
-        algorithmName = param[0];
+        this.algorithmName = param[0];
         if (param.length == 3) {
-            encryptMode = param[1];
+            this.encryptMode = param[1];
         } else {
-            encryptMode = "ECB";
+            this.encryptMode = "ECB";
         }
     }
 

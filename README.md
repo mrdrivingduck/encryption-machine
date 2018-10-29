@@ -6,11 +6,13 @@ Author : Mr Dk.
 
 Date : 2018.10.25
 
+Environment : `JDK` & `JRE` - Versions above 1.8
+
 ---
 
 ### Symmetric Encryption
 
-* Construct an `SymEcrptMachine` object
+* Construct a `SymEcrptMachine` object
 
   * with specific __algorithm__ & randomly-generated _secret key_
 
@@ -90,7 +92,68 @@ String keyString = sem1.getKeyString();
 
 ### Asymmetric Encryption
 
-* Developing
+* Construct an `AsymEcrptMachine` object
+
+  * with specific __algorithm__ & randomly-generated private/public key-pair
+
+  ```java
+  AsymEcrptMachine aem = new AsymEcrptMachine("RSA/ECB/PKCS1Padding");
+  ```
+
+  * with specific algorithm & randomly-generated private/public key-pair of __specific length__
+
+  ```java
+  AsymEcrptMachine aem = new AsymEcrptMachine("RSA/ECB/PKCS1Padding", 1024);
+  ```
+
+* Encrypt with _internal_ __public key__ & decrypt with _internal_ __private key__
+
+```java
+byte[] cipherText = aem.publicKeyEncrypt("I love u");
+String plainText = aem.privateKeyDecrypt(cipherText);
+```
+
+* Encrypt with _internal_ __private key__ & decrypt with _internal_ __public key__
+
+```java
+byte[] cipherText = aem.privateKeyEncrypt("I love u");
+String plainText = aem.publicKeyDecrypt(cipherText);
+```
+
+* Encrypt with _external_ __public key__ & decrypt with _external_ __private key__
+
+```java
+AsymEcrptMachine another = new AsymEcrptMachine("RSA", 1024);
+byte[] cipherText = aem.publicKeyEncrypt("I love u", another.getPublicKey());
+String plainText = aem.privateKeyDecrypt(cipherText, another.getPrivateKey());
+```
+
+* Encrypt with _external_ __private key__ & decrypt with _external_ __public key__
+
+```java
+AsymEcrptMachine another = new AsymEcrptMachine("RSA/ECB/PKCS1Padding", 1024);
+byte[] cipherText = aem.privateKeyEncrypt("I love u", another.getPrivateKey());
+String plainText = aem.publicKeyDecrypt(cipherText, another.getPublicKey());
+```
+
+* Get __public key__ or __private key__
+
+```java
+byte[] publicKey = aem.getPublicKey();
+byte[] privateKey = aem.getPrivateKey();
+```
+
+* Supported working modes
+
+| Algorithm | Encrypting Mode | Filling Mode | Parameter                      |
+| --------- | --------------- | ------------ | ------------------------------ |
+| RSA       | ECB             | PKCS1Padding | `RSA` / `RSA/ECB/PKCS1Padding` |
+
+* Supported key length
+
+| Algorithm | Key Length (bit)         |
+| --------- | ------------------------ |
+| RSA       | ≥ 512 (Suggested ≥ 1024) |
 
 ---
 
@@ -105,13 +168,27 @@ They are defined as _static_ methods in class `CoderUtil`.
 * To encode a byte array into a hexadecimal string
 
 ```java
-public static String encodeHex(final byte[] src);
+public static final String encodeHex(final byte[] src);
 ```
 
 * To decode a hexadecimal string into a byte array
 
 ```java
-public static byte[] decodeHex(final String hexStr) throws IllegalHexCharacterException;
+public static final byte[] decodeHex(final String hexStr) throws IllegalHexCharacterException;
+```
+
+#### 2. Byte Array <-> Base64 String
+
+* To encode a byte array into a base64 string
+
+```java
+public static final String encodeBase64(final byte[] src);
+```
+
+* To decode a base64 string into a byte array
+
+```java
+public static final byte[] decodeBase64(final String base64Str);
 ```
 
 ---
