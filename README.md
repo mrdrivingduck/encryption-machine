@@ -1,6 +1,6 @@
 # Encryption Machine
 
-A Java framework for simple encryption/decryption.
+🔒 A Java framework for simple encryption/decryption.
 
 Author : Mr Dk.
 
