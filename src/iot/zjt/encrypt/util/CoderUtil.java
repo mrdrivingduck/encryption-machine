@@ -1,8 +1,8 @@
-package cn.zjt.encrypt.util;
+package iot.zjt.encrypt.util;
 
 import java.util.Base64;
 
-import cn.zjt.encrypt.exception.IllegalHexCharacterException;
+import iot.zjt.encrypt.exception.IllegalHexCharacterException;
 
 /**
  * @version 2018.10.29

@@ -1,4 +1,4 @@
-package cn.zjt.encrypt.machine;
+package iot.zjt.encrypt.machine;
 
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;

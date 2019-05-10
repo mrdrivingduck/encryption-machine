@@ -1,4 +1,4 @@
-package cn.zjt.encrypt.exception;
+package iot.zjt.encrypt.exception;
 
 public class IllegalHexCharacterException extends Exception {
 

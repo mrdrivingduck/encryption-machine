@@ -1,4 +1,4 @@
-package cn.zjt.encrypt.machine;
+package iot.zjt.encrypt.machine;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
@@ -15,8 +15,8 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import cn.zjt.encrypt.exception.IllegalHexCharacterException;
-import cn.zjt.encrypt.util.CoderUtil;
+import iot.zjt.encrypt.exception.IllegalHexCharacterException;
+import iot.zjt.encrypt.util.CoderUtil;
 
 /**
  * @author Mr Dk.

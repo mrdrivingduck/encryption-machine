@@ -1,6 +1,6 @@
-package cn.zjt.encrypt.test;
+package iot.zjt.encrypt.test;
 
-import cn.zjt.encrypt.machine.SymEcrptMachine;
+import iot.zjt.encrypt.machine.SymEcrptMachine;
 
 public class TestSymmetryRandom {
 
