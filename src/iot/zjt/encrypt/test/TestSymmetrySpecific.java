@@ -18,15 +18,15 @@ public class TestSymmetrySpecific {
 		
 		System.out.println(plainText);
 
-		sem = new SymEcrptMachine("DES", "12345678", "23123212");
-		cipherText = sem.encrypt(message);
-		plainText = sem.decrypt(cipherText);
-		System.out.println(plainText);
+		// sem = new SymEcrptMachine("DES", "12345678", "23123212");
+		// cipherText = sem.encrypt(message);
+		// plainText = sem.decrypt(cipherText);
+		// System.out.println(plainText);
 
-		sem = new SymEcrptMachine("DES/CBC/PKCS5Padding", "12345678");
-		cipherText = sem.encrypt(message);
-		plainText = sem.decrypt(cipherText);
-		System.out.println(plainText);
+		// sem = new SymEcrptMachine("DES/CBC/PKCS5Padding", "12345678");
+		// cipherText = sem.encrypt(message);
+		// plainText = sem.decrypt(cipherText);
+		// System.out.println(plainText);
 
 		sem = new SymEcrptMachine("AES/CBC/PKCS5Padding", "1234567812345678");
 		cipherText = sem.encrypt(message);

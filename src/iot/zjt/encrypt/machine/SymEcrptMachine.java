@@ -90,6 +90,7 @@ public class SymEcrptMachine {
 
         paramInitialize(algorithm);
         try {
+            System.out.println(keyStr.length());
             this.key = new SecretKeySpec(keyStr.getBytes("utf-8"), algorithmName);
             this.cipher = Cipher.getInstance(algorithm);
             this.ivSpec = new IvParameterSpec(ivSpecStr.getBytes());
