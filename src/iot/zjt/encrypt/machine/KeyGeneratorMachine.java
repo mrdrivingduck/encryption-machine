@@ -1,9 +1,12 @@
 package iot.zjt.encrypt.machine;
 
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.KeyGenerator;
 
+import iot.zjt.encrypt.machine.Asym.AsymAlgs;
 import iot.zjt.encrypt.machine.SymEncrpMachine.SymAlgs;
 
 /**
@@ -40,5 +43,34 @@ public class KeyGeneratorMachine {
         keyGenerator.init(keySize);
         byte[] key = keyGenerator.generateKey().getEncoded();
         return key;
+    }
+
+    /**
+     * RSA - 2048(default) / >= 512
+     * [0] for private key
+     * [1] for public key
+     */
+    public static byte[][] generateKeyPair(AsymAlgs algs)
+        throws NoSuchAlgorithmException {
+
+        KeyPairGenerator gen = KeyPairGenerator.getInstance(algs.name());
+        KeyPair pair = gen.generateKeyPair();
+        byte[][] keyBytes = { pair.getPrivate().getEncoded(), pair.getPublic().getEncoded() };
+        return keyBytes;
+    }
+
+    /**
+     * RSA - 2048(default) / >= 512
+     * [0] for private key
+     * [1] for public key
+     */
+    public static byte[][] generateKeyPair(AsymAlgs algs, int keySize)
+        throws NoSuchAlgorithmException {
+
+        KeyPairGenerator gen = KeyPairGenerator.getInstance(algs.name());
+        gen.initialize(keySize);
+        KeyPair pair = gen.generateKeyPair();
+        byte[][] keyBytes = { pair.getPrivate().getEncoded(), pair.getPublic().getEncoded() };
+        return keyBytes;
     }
 }
