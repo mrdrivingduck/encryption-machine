@@ -31,7 +31,7 @@ public class CoderUtil {
      * @param src
      * @return A hexadecimal string of source byte array
      */
-    public static final String encodeHex(final byte[] src) {
+    public static final String toHex(final byte[] src) {
         char[] encode = new char[src.length * 2];
         int index = 0;
 
@@ -48,7 +48,7 @@ public class CoderUtil {
      * @return A byte array parsed from source hexadecimal string
      * @throws IllegalHexCharacterException
      */
-    public static final byte[] decodeHex(final String hexStr) throws IllegalHexCharacterException {
+    public static final byte[] fromHex(final String hexStr) throws IllegalHexCharacterException {
         byte[] decode = new byte[hexStr.length() / 2];
         char[] charArray = hexStr.toLowerCase().toCharArray();
         
@@ -75,7 +75,7 @@ public class CoderUtil {
      * @param src
      * @return An encoded Base64 string
      */
-    public static final String encodeBase64(final byte[] src) {
+    public static final String toBase64(final byte[] src) {
         return Base64.getEncoder().encodeToString(src);
     }
 
@@ -83,7 +83,7 @@ public class CoderUtil {
      * @param base64Str
      * @return An decoded byte array from a Base64 string
      */
-    public static final byte[] decodeBase64(final String base64Str) {
+    public static final byte[] fromBase64(final String base64Str) {
         return Base64.getDecoder().decode(base64Str);
     }
 }

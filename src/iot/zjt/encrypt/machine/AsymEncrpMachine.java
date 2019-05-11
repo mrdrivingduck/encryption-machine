@@ -16,7 +16,7 @@ import javax.crypto.NoSuchPaddingException;
 
 /**
  * @author mrdrivingduck
- * @version 2019-05-11
+ * @version 2019-05-12
  * 
  * @decription Encryption machine for asymmetrical encryption
  * 
@@ -25,7 +25,7 @@ import javax.crypto.NoSuchPaddingException;
  *          RSA/ECB/OAEPWithSHA-256AndMGF1Padding (1024, 2048)
  */
 
-public class Asym {
+public class AsymEncrpMachine {
 
     public static enum AsymAlgs {
         RSA

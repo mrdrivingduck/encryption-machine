@@ -1,10 +1,10 @@
 package iot.zjt.encrypt.test;
 
-import iot.zjt.encrypt.machine.Asym;
+import iot.zjt.encrypt.machine.AsymEncrpMachine;
+import iot.zjt.encrypt.machine.AsymEncrpMachine.AsymAlgs;
+import iot.zjt.encrypt.machine.AsymEncrpMachine.AsymMode;
+import iot.zjt.encrypt.machine.AsymEncrpMachine.AsymPadding;
 import iot.zjt.encrypt.machine.KeyGeneratorMachine;
-import iot.zjt.encrypt.machine.Asym.AsymAlgs;
-import iot.zjt.encrypt.machine.Asym.AsymMode;
-import iot.zjt.encrypt.machine.Asym.AsymPadding;
 
 /**
  * @author Mr Dk.
@@ -25,12 +25,12 @@ public class TestRSA {
         try {
             String plain = "hello";
             byte[][] keyPair = KeyGeneratorMachine.generateKeyPair(AsymAlgs.RSA);
-            byte[] cipherText = Asym.publicKeyEncrypt(plain.getBytes(), keyPair[1], AsymAlgs.RSA);
+            byte[] cipherText = AsymEncrpMachine.publicKeyEncrypt(plain.getBytes(), keyPair[1], AsymAlgs.RSA);
             String cipherStr = new String(cipherText);
             System.out.println("---- CIPHER TEXT ----");
             System.out.println(cipherStr);
 
-            byte[] plainText = Asym.privateKeyDecrypt(cipherText, keyPair[0], AsymAlgs.RSA);
+            byte[] plainText = AsymEncrpMachine.privateKeyDecrypt(cipherText, keyPair[0], AsymAlgs.RSA);
             String plainStr = new String(plainText);
             System.out.println("---- PLAIN TEXT ----");
             System.out.println(plainStr);
@@ -47,12 +47,12 @@ public class TestRSA {
         try {
             String plain = "hello";
             byte[][] keyPair = KeyGeneratorMachine.generateKeyPair(AsymAlgs.RSA);
-            byte[] cipherText = Asym.publicKeyEncrypt(plain.getBytes(), keyPair[1], AsymAlgs.RSA, AsymMode.ECB, AsymPadding.OAEPWithSHA_256AndMGF1Padding);
+            byte[] cipherText = AsymEncrpMachine.publicKeyEncrypt(plain.getBytes(), keyPair[1], AsymAlgs.RSA, AsymMode.ECB, AsymPadding.OAEPWithSHA_256AndMGF1Padding);
             String cipherStr = new String(cipherText);
             System.out.println("---- CIPHER TEXT ----");
             System.out.println(cipherStr);
 
-            byte[] plainText = Asym.privateKeyDecrypt(cipherText, keyPair[0], AsymAlgs.RSA, AsymMode.ECB, AsymPadding.OAEPWithSHA_256AndMGF1Padding);
+            byte[] plainText = AsymEncrpMachine.privateKeyDecrypt(cipherText, keyPair[0], AsymAlgs.RSA, AsymMode.ECB, AsymPadding.OAEPWithSHA_256AndMGF1Padding);
             String plainStr = new String(plainText);
             System.out.println("---- PLAIN TEXT ----");
             System.out.println(plainStr);
@@ -69,12 +69,12 @@ public class TestRSA {
         try {
             String plain = "hello";
             byte[][] keyPair = KeyGeneratorMachine.generateKeyPair(AsymAlgs.RSA);
-            byte[] cipherText = Asym.privateKeyEncrypt(plain.getBytes(), keyPair[0], AsymAlgs.RSA);
+            byte[] cipherText = AsymEncrpMachine.privateKeyEncrypt(plain.getBytes(), keyPair[0], AsymAlgs.RSA);
             String cipherStr = new String(cipherText);
             System.out.println("---- CIPHER TEXT ----");
             System.out.println(cipherStr);
 
-            byte[] plainText = Asym.publicKeyDecrypt(cipherText, keyPair[1], AsymAlgs.RSA);
+            byte[] plainText = AsymEncrpMachine.publicKeyDecrypt(cipherText, keyPair[1], AsymAlgs.RSA);
             String plainStr = new String(plainText);
             System.out.println("---- PLAIN TEXT ----");
             System.out.println(plainStr);

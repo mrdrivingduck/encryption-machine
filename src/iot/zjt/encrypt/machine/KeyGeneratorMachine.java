@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.KeyGenerator;
 
-import iot.zjt.encrypt.machine.Asym.AsymAlgs;
+import iot.zjt.encrypt.machine.AsymEncrpMachine.AsymAlgs;
 import iot.zjt.encrypt.machine.SymEncrpMachine.SymAlgs;
 
 /**
