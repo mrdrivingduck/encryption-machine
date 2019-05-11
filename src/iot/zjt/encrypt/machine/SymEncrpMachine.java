@@ -3,7 +3,6 @@ package iot.zjt.encrypt.machine;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -16,7 +15,7 @@ import javax.security.auth.DestroyFailedException;
 
 /**
  * @author mrdrivingduck
- * @version 2019-05-10
+ * @version 2019-05-11
  * 
  * @description Encryption machine for symmetrical encryption
  * 
@@ -35,7 +34,7 @@ import javax.security.auth.DestroyFailedException;
  *  DESede/ECB/PKCS5Padding (168)
  */
 
-public class Sym {
+public class SymEncrpMachine {
 
     public static enum SymAlgs {
         AES,
@@ -90,19 +89,51 @@ public class Sym {
         throws NoSuchAlgorithmException, NoSuchPaddingException,
         InvalidKeyException, IllegalBlockSizeException,
         BadPaddingException, InvalidAlgorithmParameterException {
+
+        if (mode == SymMode.CBC) {
+            throw new InvalidKeyException("Parameters missing");
+        }
         
         SecretKey secretKey = new SecretKeySpec(key, algs.name());
         Cipher cipher = Cipher.getInstance(algs.name() + "/" + mode.name() + "/" + padd.name());
+
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+
+        byte[] cipherText = cipher.doFinal(plainText);
         
-        byte[] ivRand = null;
-        if (algs == SymAlgs.DES || algs == SymAlgs.DESede) {
-            ivRand = new byte[8];
-        } else if (algs == SymAlgs.AES) {
-            ivRand = new byte[16];
+        return cipherText;
+    }
+
+    public static byte[] decrypt(byte[] cipherText, byte[] key, SymAlgs algs, SymMode mode, SymPadding padd)
+        throws NoSuchAlgorithmException, NoSuchPaddingException,
+        InvalidKeyException, InvalidAlgorithmParameterException,
+        IllegalBlockSizeException, BadPaddingException {
+
+        if (mode == SymMode.CBC) {
+            throw new InvalidKeyException("Parameters missing");
         }
-        SecureRandom rand = new SecureRandom();
-        rand.nextBytes(ivRand);
-        IvParameterSpec ivSpec = new IvParameterSpec(ivRand);
+
+        SecretKey secretKey = new SecretKeySpec(key, algs.name());
+        Cipher cipher = Cipher.getInstance(algs.name() + "/" + mode.name() + "/" + padd.name());
+        
+        cipher.init(Cipher.DECRYPT_MODE, secretKey);
+
+        return cipher.doFinal(cipherText);
+    }
+        
+
+    /**
+     * @iv CBC mode only
+     */
+    public static byte[] encrypt(byte[] plainText, byte[] key, byte[] iv, SymAlgs algs, SymMode mode, SymPadding padd)
+        throws NoSuchAlgorithmException, NoSuchPaddingException,
+        InvalidKeyException,
+        IllegalBlockSizeException, BadPaddingException,
+        InvalidAlgorithmParameterException {
+
+        SecretKey secretKey = new SecretKeySpec(key, algs.name());
+        Cipher cipher = Cipher.getInstance(algs.name() + "/" + mode.name() + "/" + padd.name());
+        IvParameterSpec ivSpec = new IvParameterSpec(iv);
 
         if (mode == SymMode.CBC) {
             cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivSpec);
@@ -111,43 +142,28 @@ public class Sym {
         }
 
         byte[] cipherText = cipher.doFinal(plainText);
-
+        
         return cipherText;
     }
 
-    public static byte[] decrypt(byte[] plainText, byte[] key, SymAlgs algs, SymMode mode, SymPadding padd)
+    public static byte[] decrypt(byte[] cipherText, byte[] key, byte[] iv, SymAlgs algs, SymMode mode, SymPadding padd)
         throws NoSuchAlgorithmException, NoSuchPaddingException,
-        InvalidKeyException, InvalidAlgorithmParameterException {
+        InvalidKeyException, InvalidAlgorithmParameterException,
+        IllegalBlockSizeException, BadPaddingException {
 
         SecretKey secretKey = new SecretKeySpec(key, algs.name());
         Cipher cipher = Cipher.getInstance(algs.name() + "/" + mode.name() + "/" + padd.name());
-        
-        byte[] ivRand = null;
-        if (algs == SymAlgs.DES || algs == SymAlgs.DESede) {
-            ivRand = new byte[8];
-        } else if (algs == SymAlgs.AES) {
-            ivRand = new byte[16];
-        }
-        SecureRandom rand = new SecureRandom();
-        rand.nextBytes(ivRand);
-        IvParameterSpec ivSpec = new IvParameterSpec(ivRand);
+        IvParameterSpec ivSpec = new IvParameterSpec(iv);
 
         if (mode == SymMode.CBC) {
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivSpec);
+            cipher.init(Cipher.DECRYPT_MODE, secretKey, ivSpec);
         } else {
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
         }
 
-        return null;
-    }
+        byte[] plainText = cipher.doFinal(cipherText);
         
-
-    /**
-     * @iv CBC mode only
-     */
-    public static byte[] encrypt(byte[] plainText, byte[] key, byte[] iv, SymAlgs algs, SymMode mode, SymPadding fill) {
-
-        return null;
+        return plainText;
     }
 
 }

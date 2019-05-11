@@ -4,12 +4,13 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.KeyGenerator;
 
-import iot.zjt.encrypt.machine.Sym.SymAlgs;
+import iot.zjt.encrypt.machine.SymEncrpMachine.SymAlgs;
 
 /**
  * @author mrdrivingduck
- * @version 2019-05-10
- * @description For generating secret key (pair)
+ * @version 2019-05-11
+ * 
+ *  For generating secret key (pair)
  */
 
 public class KeyGeneratorMachine {
