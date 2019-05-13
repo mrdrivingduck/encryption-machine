@@ -59,20 +59,20 @@ public static byte[] decrypt(byte[] cipherText, byte[] key, byte[] iv, SymAlgs a
 
 ### Support
 
-| Algorithm | Encrypting Mode | Filling Mode | IV Length | Parameter                                |
-| --------- | --------------- | ------------ | --------- | ---------------------------------------- |
-| AES       | ECB             | PKCS5Padding | /         | `"AES"` / `"AES/ECE/PKCS5Padding"`       |
-| AES       | ECB             | NoPadding    | /         | `"AEC/ECB/NoPadding"`                    |
-| AES       | CBC             | PKCS5Padding | 16 Bytes  | `"AES/CBC/PKCS5Padding"`                 |
-| AES       | CBC             | NoPadding    | 16 Bytes  | `"AEC/CBC/NoPadding"`                    |
-| DES       | ECB             | PKCS5Padding | /         | `"DES"` / `"DES/ECB/PKCS5Padding"`       |
-| DES       | ECB             | NoPadding    | /         | `"DES/ECB/NoPadding"`                    |
-| DES       | CBC             | PKCS5Padding | 8 Bytes   | `"DES/CBC/PKCS5Padding"`                 |
-| DES       | CBC             | NoPadding    | 8 Bytes   | `"DES/CBC/NoPadding"`                    |
-| DESede    | ECB             | PKCS5Padding | /         | `"DESede"` / `"DESede/ECB/PKCS5Padding"` |
-| DESede    | ECB             | NoPadding    | /         | `"DESede/ECB/NoPadding"`                 |
-| DESede    | CBC             | PKCS5Padding | 8 Bytes   | `"DESede/CBC/PKCS5Padding"`              |
-| DESede    | CBC             | NoPadding    | 8 Bytes   | `"DESede/CBC/NoPadding"`                 |
+| Algorithm        | Encrypting Mode | Filling Mode | IV Length |
+| ---------------- | --------------- | ------------ | --------- |
+| AES (default)    | ECB             | PKCS5Padding | /         |
+| AES              | ECB             | NoPadding    | /         |
+| AES              | CBC             | PKCS5Padding | 16 Bytes  |
+| AES              | CBC             | NoPadding    | 16 Bytes  |
+| DES (default)    | ECB             | PKCS5Padding | /         |
+| DES              | ECB             | NoPadding    | /         |
+| DES              | CBC             | PKCS5Padding | 8 Bytes   |
+| DES              | CBC             | NoPadding    | 8 Bytes   |
+| DESede (default) | ECB             | PKCS5Padding | /         |
+| DESede           | ECB             | NoPadding    | /         |
+| DESede           | CBC             | PKCS5Padding | 8 Bytes   |
+| DESede           | CBC             | NoPadding    | 8 Bytes   |
 
 ### Key Length
 
@@ -120,11 +120,11 @@ public static byte[] privateKeyDecrypt(byte[] cipherText, byte[] privateKey, Asy
 
 ### Support
 
-| Algorithm | Encrypting Mode | Filling Mode                  | Parameter                               |
-| --------- | --------------- | ----------------------------- | --------------------------------------- |
-| RSA       | ECB             | PKCS1Padding                  | `RSA` / `RSA/ECB/PKCS1Padding`          |
-| RSA       | ECB             | OAEPWithSHA-1AndMGF1Padding   | `RSA/ECB/OAEPWithSHA-1AndMGF1Padding`   |
-| RSA       | ECB             | OAEPWithSHA-256AndMGF1Padding | `RSA/ECB/OAEPWithSHA-256AndMGF1Padding` |
+| Algorithm     | Encrypting Mode | Filling Mode                  |
+| ------------- | --------------- | ----------------------------- |
+| RSA (default) | ECB             | PKCS1Padding                  |
+| RSA           | ECB             | OAEPWithSHA-1AndMGF1Padding   |
+| RSA           | ECB             | OAEPWithSHA-256AndMGF1Padding |
 
 ### Key Length
 
