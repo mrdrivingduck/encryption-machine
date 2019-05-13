@@ -1,3 +1,14 @@
+/**
+ * @author mrdrivingduck
+ * @version 2019-05-12
+ * 
+ * @decription Encryption machine for asymmetrical encryption
+ * 
+ * @support RSA/ECB/PKCS1Padding (1024, 2048)
+ *          RSA/ECB/OAEPWithSHA-1AndMGF1Padding (1024, 2048)
+ *          RSA/ECB/OAEPWithSHA-256AndMGF1Padding (1024, 2048)
+ */
+
 package iot.zjt.encrypt.machine;
 
 import java.security.InvalidKeyException;
@@ -13,17 +24,6 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-
-/**
- * @author mrdrivingduck
- * @version 2019-05-12
- * 
- * @decription Encryption machine for asymmetrical encryption
- * 
- * @support RSA/ECB/PKCS1Padding (1024, 2048)
- *          RSA/ECB/OAEPWithSHA-1AndMGF1Padding (1024, 2048)
- *          RSA/ECB/OAEPWithSHA-256AndMGF1Padding (1024, 2048)
- */
 
 public class AsymEncrpMachine {
 

@@ -1,13 +1,13 @@
+/**
+ * @version 2018.10.29
+ * @author Mr Dk.
+ */
+
 package iot.zjt.encrypt.util;
 
 import java.util.Base64;
 
 import iot.zjt.encrypt.exception.IllegalHexCharacterException;
-
-/**
- * @version 2018.10.29
- * @author Mr Dk.
- */
 
 public class CoderUtil {
 

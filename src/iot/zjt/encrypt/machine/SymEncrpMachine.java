@@ -1,18 +1,3 @@
-package iot.zjt.encrypt.machine;
-
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-import javax.security.auth.DestroyFailedException;
-
 /**
  * @author mrdrivingduck
  * @version 2019-05-11
@@ -33,6 +18,21 @@ import javax.security.auth.DestroyFailedException;
  *  DESede/ECB/NoPadding (168)
  *  DESede/ECB/PKCS5Padding (168)
  */
+
+package iot.zjt.encrypt.machine;
+
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import javax.security.auth.DestroyFailedException;
 
 public class SymEncrpMachine {
 

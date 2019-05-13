@@ -1,12 +1,3 @@
-package iot.zjt.encrypt.test;
-
-import iot.zjt.encrypt.machine.KeyGeneratorMachine;
-import iot.zjt.encrypt.machine.SymEncrpMachine;
-import iot.zjt.encrypt.machine.SymEncrpMachine.SymAlgs;
-import iot.zjt.encrypt.machine.SymEncrpMachine.SymMode;
-import iot.zjt.encrypt.machine.SymEncrpMachine.SymPadding;
-import iot.zjt.encrypt.util.CoderUtil;
-
 /**
  * @author Mr Dk.
  * @version 2019-05-12
@@ -17,6 +8,15 @@ import iot.zjt.encrypt.util.CoderUtil;
  * 
  *  IV must be 16 bytes long
  */
+
+package iot.zjt.encrypt.test;
+
+import iot.zjt.encrypt.machine.KeyGeneratorMachine;
+import iot.zjt.encrypt.machine.SymEncrpMachine;
+import iot.zjt.encrypt.machine.SymEncrpMachine.SymAlgs;
+import iot.zjt.encrypt.machine.SymEncrpMachine.SymMode;
+import iot.zjt.encrypt.machine.SymEncrpMachine.SymPadding;
+import iot.zjt.encrypt.util.CoderUtil;
 
 public class TestAES {
 

@@ -1,3 +1,10 @@
+/**
+ * @author Mr Dk.
+ * @version 2019-05-12
+ * 
+ *  RSA support key of >= 512 bit (2048 default)
+ */
+
 package iot.zjt.encrypt.test;
 
 import iot.zjt.encrypt.machine.AsymEncrpMachine;
@@ -6,13 +13,6 @@ import iot.zjt.encrypt.machine.AsymEncrpMachine.AsymMode;
 import iot.zjt.encrypt.machine.AsymEncrpMachine.AsymPadding;
 import iot.zjt.encrypt.util.CoderUtil;
 import iot.zjt.encrypt.machine.KeyGeneratorMachine;
-
-/**
- * @author Mr Dk.
- * @version 2019-05-12
- * 
- *  RSA support key of >= 512 bit (2048 default)
- */
 
 public class TestRSA {
 

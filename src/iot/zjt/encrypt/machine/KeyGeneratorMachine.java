@@ -1,3 +1,10 @@
+/**
+ * @author mrdrivingduck
+ * @version 2019-05-11
+ * 
+ *  For generating secret key (pair)
+ */
+
 package iot.zjt.encrypt.machine;
 
 import java.security.KeyPair;
@@ -8,13 +15,6 @@ import javax.crypto.KeyGenerator;
 
 import iot.zjt.encrypt.machine.AsymEncrpMachine.AsymAlgs;
 import iot.zjt.encrypt.machine.SymEncrpMachine.SymAlgs;
-
-/**
- * @author mrdrivingduck
- * @version 2019-05-11
- * 
- *  For generating secret key (pair)
- */
 
 public class KeyGeneratorMachine {
 

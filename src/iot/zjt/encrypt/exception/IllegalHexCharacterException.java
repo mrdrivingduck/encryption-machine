@@ -1,3 +1,8 @@
+/**
+ * @author Mr Dk.
+ * @version 2018.10.xx
+ */
+
 package iot.zjt.encrypt.exception;
 
 public class IllegalHexCharacterException extends Exception {
