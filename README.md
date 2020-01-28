@@ -191,3 +191,9 @@ They are defined as _static_ methods in class `CoderUtil`.
 
 ---
 
+## License
+
+Copyright © 2018-2020, Jingtang Zhang. ([MIT License](LICENSE))
+
+---
+
