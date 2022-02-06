@@ -2,39 +2,32 @@
 
 🔒 A Java wrapper for simple encryption/decryption.
 
-Created by : Mr Dk.
-
-2018.10.25 @Nanjing, Jiangsu, China
-
-Refactored by : Mr Dk.
-
-2019.05.12 @Nanjing, Jiangsu, China
-
----
+| Action     | Author | Date       | Place                   |
+| ---------- | ------ | ---------- | ----------------------- |
+| Created    | Mr Dk. | 2018/10/25 | Nanjing, Jiangsu, China |
+| Refactored | Mr Dk. | 2019/05/12 | Nanjing, Jiangsu, China |
 
 ## Dependency
 
-Java 8 with JDK & JRE
-
----
+JDK only.
 
 ## Symmetric Encryption
 
-### Encrypt/Decrypt with __Key__ & __Algorithm__ in default mode & padding
+### Encrypt/Decrypt with **Key** & **Algorithm** in default mode & padding
 
 ```java
 public static byte[] encrypt(byte[] plainText, byte[] key, SymAlgs algs);
 public static byte[] decrypt(byte[] cipherText, byte[] key, SymAlgs algs);
 ```
 
-### Encrypt/Decrypt with __Key__ & __Algorithm__ in specific __mode__ & __padding__
+### Encrypt/Decrypt with **Key** & **Algorithm** in specific **mode** & **padding**
 
 ```java
 public static byte[] encrypt(byte[] plainText, byte[] key, SymAlgs algs, SymMode mode, SymPadding padd);
 public static byte[] decrypt(byte[] cipherText, byte[] key, SymAlgs algs, SymMode mode, SymPadding padd);
 ```
 
-### Encrypt/Decrypt with __Key__ & __Algorithm__ with __IV__ in specific __mode__ & __padding__
+### Encrypt/Decrypt with **Key** & **Algorithm** with **IV** in specific **mode** & **padding**
 
 ```java
 public static byte[] encrypt(byte[] plainText, byte[] key, byte[] iv, SymAlgs algs, SymMode mode, SymPadding padd);
@@ -43,19 +36,19 @@ public static byte[] decrypt(byte[] cipherText, byte[] key, byte[] iv, SymAlgs a
 
 ### Algorithms
 
-* `SysAlgs.AES`
-* `SysAlgs.DES`
-* `SysAlgs.DESede`
+- `SysAlgs.AES`
+- `SysAlgs.DES`
+- `SysAlgs.DESede`
 
 ### Modes
 
-* `SysMode.ECB`
-* `SysMode.CBC`
+- `SysMode.ECB`
+- `SysMode.CBC`
 
 ### Paddings
 
-* `SysPadding.PKCS5Padding`
-* `SysPadding.NoPadding`
+- `SysPadding.PKCS5Padding`
+- `SysPadding.NoPadding`
 
 ### Support
 
@@ -82,11 +75,9 @@ public static byte[] decrypt(byte[] cipherText, byte[] key, byte[] iv, SymAlgs a
 | DES       | 64 (default, 56 in effect)            |
 | DESede    | 112(?) / 192 (default, 168 in effect) |
 
----
-
 ## Asymmetric Encryption
 
-### Encrypt/Decrypt with __Key__ & __Algorithm__ in default __mode__ & __padding__
+### Encrypt/Decrypt with **Key** & **Algorithm** in default **mode** & **padding**
 
 ```java
 public static byte[] publicKeyEncrypt(byte[] plainText, byte[] publicKey, AsymAlgs algs);
@@ -95,7 +86,7 @@ public static byte[] publicKeyDecrypt(byte[] cipherText, byte[] publicKey, AsymA
 public static byte[] privateKeyDecrypt(byte[] cipherText, byte[] privateKey, AsymAlgs algs);
 ```
 
-### Encrypt/Decrypt with __Key__ & __Algorithm__ in specific __mode__ & __padding__
+### Encrypt/Decrypt with **Key** & **Algorithm** in specific **mode** & **padding**
 
 ```java
 public static byte[] publicKeyEncrypt(byte[] plainText, byte[] publicKey, AsymAlgs algs, AsymMode mode, AsymPadding padd);
@@ -106,17 +97,17 @@ public static byte[] privateKeyDecrypt(byte[] cipherText, byte[] privateKey, Asy
 
 ### Algorithms
 
-* `AsymAlgs.RSA`
+- `AsymAlgs.RSA`
 
 ### Modes
 
-* `AsymMode.ECB`
+- `AsymMode.ECB`
 
 ### Paddings
 
-* `AsymPadding.PKCS1Padding`
-* `AsymPadding.OAEPWithSHA_1AndMGF1Padding`
-* `AsymPadding.OAEPWithSHA_256AndMGF1Padding`
+- `AsymPadding.PKCS1Padding`
+- `AsymPadding.OAEPWithSHA_1AndMGF1Padding`
+- `AsymPadding.OAEPWithSHA_256AndMGF1Padding`
 
 ### Support
 
@@ -131,8 +122,6 @@ public static byte[] privateKeyDecrypt(byte[] cipherText, byte[] privateKey, Asy
 | Algorithm | Key Length (bit)         |
 | --------- | ------------------------ |
 | RSA       | ≥ 512 (Suggested ≥ 1024) |
-
----
 
 ## Key Generator
 
@@ -150,26 +139,22 @@ public static byte[][] generateKeyPair(AsymAlgs algs);
 public static byte[][] generateKeyPair(AsymAlgs algs, int keySize);
 ```
 
-* `byte[0]` for __private__ key
-* `byte[1]` for __public__ key
-
----
+- `byte[0]` for **private** key
+- `byte[1]` for **public** key
 
 ## Encoding Utilities
 
-Providing several encoding & decoding algorithms to make byte arrays printable & readable.
-
-They are defined as _static_ methods in class `CoderUtil`.
+Providing several encoding & decoding algorithms to make byte arrays printable & readable. They are defined as _static_ methods in class `CoderUtil`.
 
 ### Byte Array &harr; Hexadecimal String
 
-* To encode a byte array into a hexadecimal string
+- To encode a byte array into a hexadecimal string
 
   ```java
   public static final String encodeHex(final byte[] src);
   ```
 
-* To decode a hexadecimal string into a byte array
+- To decode a hexadecimal string into a byte array
 
   ```java
   public static final byte[] decodeHex(final String hexStr) throws IllegalHexCharacterException;
@@ -177,13 +162,13 @@ They are defined as _static_ methods in class `CoderUtil`.
 
 ### Byte Array &harr; Base64 String
 
-* To encode a byte array into a base64 string
+- To encode a byte array into a base64 string
 
   ```java
   public static final String encodeBase64(final byte[] src);
   ```
 
-* To decode a base64 string into a byte array
+- To decode a base64 string into a byte array
 
   ```java
   public static final byte[] decodeBase64(final String base64Str);
@@ -193,7 +178,4 @@ They are defined as _static_ methods in class `CoderUtil`.
 
 ## License
 
-Copyright © 2018-2020, Jingtang Zhang. ([MIT License](LICENSE))
-
----
-
+Copyright © 2018-2022, Jingtang Zhang. ([MIT License](LICENSE))
